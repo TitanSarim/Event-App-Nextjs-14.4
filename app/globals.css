@@ -231,6 +231,14 @@ body {
 }
 
 /* ========================================== CLERK STYLES */
+.cl-internal-wkkub3{
+  display: none !important;
+}
+
+.cl-internal-b3fm6y{
+  display: none !important;
+}
+
 .cl-logoImage {
   height: 38px;
 }
