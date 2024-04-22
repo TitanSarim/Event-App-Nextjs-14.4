@@ -7,10 +7,19 @@ import prisma from '../prisma';
 
 export const createUser = async (userData: CreateUserParams) => {
 
+    console.log("newUser", userData)
+
     try {
 
         const newUser = await prisma.user.create({
-            data: userData
+            data: {
+                clerkId: userData.clerkId,
+                email: userData.email,
+                username: userData.username,
+                firstName: userData.firstName,
+                lastname: userData.lastname,
+                photo: userData.photo
+            }
         });
 
         return JSON.parse(JSON.stringify(newUser));
