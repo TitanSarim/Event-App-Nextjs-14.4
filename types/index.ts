@@ -88,6 +88,7 @@ export type CreateUserParams = {
   
   // ====== CATEGORY PARAMS
   export type CreateCategoryParams = {
+    id: number,
     categoryName: string
   }
   
