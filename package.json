@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma:generate": "npx -- prisma generate",
+    "migrate:dev": "npx -- prisma migrate dev",
+    "prisma:studio": "npx -- prisma studio",
+    "migrate": "npx -- prisma migrate deploy",
+    "build:production": "npx -- npm run migrate && npm run generate && npm run build"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.30.0",
