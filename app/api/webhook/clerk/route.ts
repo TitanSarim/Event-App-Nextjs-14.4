@@ -2,8 +2,8 @@ import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import prisma from '../../../../lib/prisma';
-import { createUser, updateUser } from '@/lib/actions/user.actions';
-import { CreateUserParams } from '@/types';
+import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions';
+import { CreateUserParams, UpdateUserParams } from '@/types';
 import { clerkClient } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 
@@ -86,7 +86,7 @@ export async function POST(req: Request) {
   if(eventType === 'user.updated'){
     const {id, image_url, first_name, last_name, username} = evt.data;
 
-    const user: CreateUserParams = {
+    const user: UpdateUserParams = {
         username: username!,
         firstName: first_name,
         lastname: last_name,
@@ -94,18 +94,18 @@ export async function POST(req: Request) {
     }
 
 
-    const updateUser = await updateUser(id, user)
+    const updateUsers = await updateUser(id, user)
 
-    return NextResponse.json({message: 'OK', user: updateUser})
+    return NextResponse.json({message: 'OK', user: updateUsers})
 
   }
 
   if(eventType === 'user.deleted'){
     const {id} = evt.data;
 
-    const deleteUser = await deleteUser(id)
+    const deleteUsers = await deleteUser(id!)
 
-    return NextResponse.json({message: 'OK', user: deleteUser})
+    return NextResponse.json({message: 'OK', user: deleteUsers})
 
   }
  
