@@ -7,7 +7,6 @@ import prisma from '../prisma';
 
 export const createUser = async (userData: CreateUserParams) => {
 
-    console.log("newUser", userData)
 
     try {
 
@@ -21,6 +20,9 @@ export const createUser = async (userData: CreateUserParams) => {
                 photo: userData.photo
             }
         });
+
+        console.log("newUser", newUser)
+
 
         return JSON.parse(JSON.stringify(newUser));
         
