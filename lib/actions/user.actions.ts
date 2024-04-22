@@ -7,6 +7,7 @@ import prisma from '../prisma';
 
 export const createUser = async (userData: CreateUserParams) => {
 
+    console.log('userData123', userData)
 
     try {
 
