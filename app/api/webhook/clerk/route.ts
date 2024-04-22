@@ -1,7 +1,6 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
-import prisma from '../../../../lib/prisma';
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions';
 import { CreateUserParams, UpdateUserParams } from '@/types';
 import { clerkClient } from '@clerk/nextjs';
