@@ -17,21 +17,20 @@ export type CreateUserParams = {
   
   // ====== EVENT PARAMS
   export type CreateEventParams = {
-    userId: number
+    userId: string
     event: {
       title: string
       description: string
       address: string
       imageUrl: string
       status: string
-      url: string
-      categoryId: number
+      category: string
     }
     path: string
   }
   
   export type UpdateEventParams = {
-    userId: number
+    userId: string
     event: {
       id: number
       title: string
@@ -39,8 +38,7 @@ export type CreateUserParams = {
       address: string
       imageUrl: string
       status: string
-      url: string
-      categoryId: number
+      category: string
     }
     path: string
   }
@@ -58,13 +56,13 @@ export type CreateUserParams = {
   }
   
   export type GetEventsByUserParams = {
-    userId: number
+    userId: string
     limit?: number
     page: number
   }
   
   export type GetRelatedEventsByCategoryParams = {
-    categoryId: number
+    category: string
     eventId: number
     limit?: number
     page: number | string
@@ -72,25 +70,16 @@ export type CreateUserParams = {
   
   export type Event = {
     id: number
-    userId: number
+    userId: string
     title: string
     description: string
     address: string
     imageUrl: string
     status: string
-    url: string
-    categoryId: number
-    category: {
-      id: number
-      name: string
-    }
+    category: string,
   }
   
-  // ====== CATEGORY PARAMS
-  export type CreateCategoryParams = {
-    id: number,
-    categoryName: string
-  }
+
   
   // ====== URL QUERY PARAMS
   export type UrlQueryParams = {
