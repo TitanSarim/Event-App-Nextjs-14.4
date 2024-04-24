@@ -1,6 +1,6 @@
 'use server'
 
-import { CreateEventParams } from "@/types"
+import { CreateEventParams, GetAllEventsParams } from "@/types"
 import { handleError } from "../utils"
 import prisma from '../prisma';
 
@@ -40,4 +40,72 @@ export const createEvent = async ({event, userId, path}: CreateEventParams) => {
     }
 
 
+}
+
+export const getEventById = async (eventId: any)=> {
+    try{
+
+        const eventData = await prisma.event.findUnique({
+            where: {
+                id: JSON.parse(eventId),
+            },
+        })
+
+        const eventUser = await prisma.user.findUnique({
+            where: {
+                clerkId: eventData?.userId,
+            },
+        })
+
+        if(!eventData){
+            throw new Error("Event Not Found")
+        }
+
+        const event = {
+            event: eventData,
+            eventUser: eventUser
+        }
+
+        return JSON.parse(JSON.stringify(event))
+
+    }catch (error) {
+        handleError(error)
+    }
+}
+
+
+export const getAllEvents = async ({query, limit = 6, page, category}: GetAllEventsParams)=> {
+    try{
+
+
+        const eventData = await prisma.event.findMany({
+            orderBy: { createdAt: 'desc' },
+            skip: (page - 1) * limit,
+            take: limit, 
+        });
+
+        if(!eventData){
+            throw new Error("Event Not Found")
+        }
+
+        const eventsWithUser = await Promise.all(eventData.map(async (event) => {
+            const user = await prisma.user.findUnique({
+                where: {
+                    clerkId: event.userId,
+                },
+            });
+            return { ...event, user };
+        }));
+
+        const eventsCount = await prisma.event.count()
+
+
+        return {
+            data: eventsWithUser,
+            totalPages: Math.ceil(eventsCount / limit),
+        };
+
+    }catch (error) {
+        handleError(error)
+    }
 }
