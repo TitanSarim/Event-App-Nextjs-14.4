@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from './Card'
+import Pagination from './Pagination'
 
 
 type CollectionProps = {
@@ -9,13 +10,15 @@ type CollectionProps = {
     collectionType?: any, 
     limit: number,
     page: number | string,
-    totalPages?: number,
-    urlParamName?: number
+    totalPages?: any,
+    urlParamName?: string
 }
 
 
 const Collection = ({data, emptyTitle, emptyStateSubText, collectionType, limit, page, totalPages, urlParamName}: CollectionProps) => {
-  return (
+    
+    
+    return (
     <>
         {data.length > 0 ? (
             <div className='flex flex-col items-center gap-10'>
@@ -28,6 +31,9 @@ const Collection = ({data, emptyTitle, emptyStateSubText, collectionType, limit,
                         )
                     })}
                 </ul>
+                {totalPages > 1 && (
+                    <Pagination urlParamName={urlParamName} totalPages={totalPages} page={page}/> 
+                )}
             </div>
         ): (
             <div className='flex-center wrapper min-h-[200px] w-full flex-col gap-3 rounded-[14px] bg-gray-50 py-28 text-center'>

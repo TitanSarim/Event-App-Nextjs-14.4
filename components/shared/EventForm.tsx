@@ -21,20 +21,22 @@ import FileUploader from './FileUploader';
 import { useState } from 'react';
 import StatusDropDown from './StatusDropDown';
 import {useUploadThing} from '@/lib/uploadthing'
-import { format } from 'path';
 import { useRouter } from 'next/navigation';
-import { createEvent } from '@/lib/actions/event.actions';
+import { createEvent, updateEvent } from '@/lib/actions/event.actions';
 
 
 type EventFormProps ={
     userId: string,
     type: "Create" | "Update"
+    event?: any,
+    eventId?: number
 }
 
-const EventForm = ({userId, type}: EventFormProps) => {
+const EventForm = ({userId, type, event, eventId}: EventFormProps) => {
+
 
     const [files, setFiles] = useState<File[]>([])
-    const initialValues = eventDefaultValues;
+    const initialValues = event && type === 'Update' ? event :eventDefaultValues;
     const router = useRouter();
 
     const {startUpload} = useUploadThing('imageUploader')
@@ -58,7 +60,6 @@ const EventForm = ({userId, type}: EventFormProps) => {
             uploadedImageUrl = uploadedImages[0].url
         }
 
-        console.log("uploadedImageUrl", uploadedImageUrl)
 
         if(type === 'Create'){
             try {
@@ -74,8 +75,27 @@ const EventForm = ({userId, type}: EventFormProps) => {
                 console.log(error)
             }
         }
+        
+        if(type === 'Update') {
+            if(!eventId){
+                router.back()
+                return
+            }
+            try {
+                const updatedEvent = await updateEvent({
+                    userId, event:{...values, imageUrl:uploadedImageUrl, id: eventId}, path: `/events/${eventId}`
+                })
+                if(updatedEvent){
+                    form.reset()
+                    router.push(`/events/${updatedEvent.id}`)
+                }
 
-        console.log(values)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+
     }
 
 

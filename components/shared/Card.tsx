@@ -4,6 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 import UpdateImage from '../../public/assets/icons/edit.svg'
 import Image from 'next/image'
+import DeleteConfermation from './DeleteConfermation'
 
 type CardProps = {
     event: any
@@ -26,6 +27,7 @@ const Card = ({event}: CardProps) => {
                 <Link href={`/events/${event.id}/update`}>
                     <Image src={UpdateImage} alt="edit" width={20} height={20}/>
                 </Link>
+                <DeleteConfermation eventId={event.id}/>
             </div>
         )}
 
@@ -35,7 +37,7 @@ const Card = ({event}: CardProps) => {
                 <span className='p-semibold-14 w-min rounded-full bg-green-100 px-4 py-1 text-green-60'>
                     {event.status}
                 </span>
-                <p className='p-semibold-14 w-min rounded-full bg-gray-500/10 px-4 py-1 text-gray-500'>{event.category}</p>
+                <p className='p-semibold-14 w-min rounded-full bg-gray-500/10 px-4 py-1 text-gray-500 line-clamp-1'>{event.category}</p>
             </div>
 
             <p className='p-medium-16 p-medium-18 text-gray-500'>

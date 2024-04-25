@@ -65,7 +65,7 @@ export type CreateUserParams = {
     category: string
     eventId: number
     limit?: number
-    page: number | string
+    page: number | string | any
   }
   
   export type Event = {
