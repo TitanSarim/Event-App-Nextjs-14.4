@@ -9,7 +9,7 @@ import {
 import Image from "next/image"
 import { Separator } from "../ui/separator"
 import NavItems from "./NavItems"
-import Logo from '../../public/assets/images/logo.svg'
+import Logo from '../../public/assets/images/logo.png'
 
 
 const MobileNav = () => {

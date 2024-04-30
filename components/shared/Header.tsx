@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { Button } from '../ui/button'
-import Logo from '../../public/assets/images/logo.svg'
+import Logo from '../../public/assets/images/logo.png'
 import NavItems from './NavItems'
 import MobileNav from './MobileNav'
 

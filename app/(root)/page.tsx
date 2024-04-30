@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import headerImage from '../../public/assets/images/hero.png'
+import headerImage from '../../public/assets/images/sgdsgdsd.png'
 import Collection from "@/components/shared/Collection";
 import { getAllEvents } from "@/lib/actions/event.actions";
 import Search from "@/components/shared/Search";
@@ -42,8 +42,8 @@ export default async function Home({searchParams}: SearchParamProps) {
           <Image 
             src={headerImage} 
             alt="hero" 
-            width={1000} 
-            height={1000}
+            width={1200} 
+            height={1200}
             className="max-h-[70vh] object-contain object-center 2xl:max-h-[50vh]"
           />
         </div>
