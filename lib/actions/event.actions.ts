@@ -26,6 +26,7 @@ export const createEvent = async ({event, userId, path}: CreateEventParams) => {
                 title: event.title,
                 description: event.description,
                 address: event.address,
+                city: event.city,
                 imageUrl: event.imageUrl,
                 status : event.status,
                 category: event.category
@@ -64,6 +65,7 @@ export async function updateEvent({ userId, event, path }: UpdateEventParams) {
                     title: event.title,
                     description: event.description,
                     address: event.address,
+                    city: event.city,
                     imageUrl: event.imageUrl,
                     status : event.status,
                     category: event.category

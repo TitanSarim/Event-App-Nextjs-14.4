@@ -18,6 +18,7 @@ CREATE TABLE "Event" (
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "address" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
     "imageUrl" TEXT NOT NULL,
     "status" TEXT NOT NULL,
     "category" TEXT NOT NULL,
@@ -25,6 +26,16 @@ CREATE TABLE "Event" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Event_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Alert" (
+    "id" SERIAL NOT NULL,
+    "userId" TEXT NOT NULL,
+    "category" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+
+    CONSTRAINT "Alert_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex

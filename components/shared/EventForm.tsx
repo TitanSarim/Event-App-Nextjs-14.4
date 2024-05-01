@@ -23,6 +23,7 @@ import StatusDropDown from './StatusDropDown';
 import {useUploadThing} from '@/lib/uploadthing'
 import { useRouter } from 'next/navigation';
 import { createEvent, updateEvent } from '@/lib/actions/event.actions';
+import SelectCity from './SelectCity';
 
 
 type EventFormProps ={
@@ -174,18 +175,33 @@ const EventForm = ({userId, type, event, eventId}: EventFormProps) => {
                     </FormItem>
                 )}
             /> 
+
+            <FormField
+                control={form.control}
+                name="city"
+                render={({ field }) => (
+                    <FormItem className='w-full'>
+                    <FormControl>
+                        <SelectCity onChangeHandler={field.onChange} value={field.value}/>
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
+                )}
+            />
             <FormField
                 control={form.control}
                 name="status"
                 render={({ field }) => (
-                <FormItem className='w-full'>
-                <FormControl>
-                    <StatusDropDown onChangeHandler={field.onChange} value={field.value}/>
-                </FormControl>
-                <FormMessage />
-                </FormItem>
-            )}
+                    <FormItem className='w-full'>
+                    <FormControl>
+                        <StatusDropDown onChangeHandler={field.onChange} value={field.value}/>
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
+                )}
             />
+
+                
         </div>
        
         <Button type="submit" size="lg" disabled={form.formState.isSubmitting} className='button col-span-2 w-full'>

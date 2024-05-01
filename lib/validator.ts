@@ -7,5 +7,11 @@ export const eventFormSchema = z.object({
     address: z.string().min(3, 'Location must be at least 3 characters').max(200, 'Location must be at less then 200 characters'),
     imageUrl: z.string(),
     category: z.string(),
+    city: z.string(),
     status: z.string(),
+  })
+
+  export const AlertFormSchema = z.object({
+    city: z.string(),
+    category: z.string(),
   })

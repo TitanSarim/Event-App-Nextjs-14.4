@@ -21,10 +21,11 @@ export type CreateUserParams = {
     event: {
       title: string
       description: string
-      address: string
+      address: string,
+      city: string,
       imageUrl: string
       status: string
-      category: string
+      category: string,
     }
     path: string
   }
@@ -38,7 +39,8 @@ export type CreateUserParams = {
       address: string
       imageUrl: string
       status: string
-      category: string
+      category: string,
+      city: string,
     }
     path: string
   }
@@ -77,9 +79,27 @@ export type CreateUserParams = {
     imageUrl: string
     status: string
     category: string,
+    city: string,
   }
   
 
+ // ====== Alert
+  export type CreateAlertParams = {
+    userId: string,
+    event: {
+      city: string,
+      category: string,
+    }
+
+  }
+
+  export type DeleteAlertParams = {
+    eventId: number
+  }
+
+  export type GetAlertsByUserParams = {
+    userId: string
+  }
   
   // ====== URL QUERY PARAMS
   export type UrlQueryParams = {
