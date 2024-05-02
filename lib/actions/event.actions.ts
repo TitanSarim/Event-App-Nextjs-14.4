@@ -4,7 +4,7 @@ import { CreateEventParams, DeleteEventParams, GetAllEventsParams, GetEventsByUs
 import { handleError } from "../utils"
 import prisma from '../prisma';
 import { revalidatePath } from "next/cache";
-
+import {sendEmail} from '../SendAlerts'
 
 export const createEvent = async ({event, userId, path}: CreateEventParams) => {
 
@@ -32,6 +32,41 @@ export const createEvent = async ({event, userId, path}: CreateEventParams) => {
                 category: event.category
             }
         })
+
+
+        const EventCategory = event.category
+        const EventCity = event.city
+        
+        const alertData = await prisma.alert.findMany({
+            where: {
+              category: EventCategory,
+              city: EventCity
+            }
+        });
+
+        const userIds = alertData.map(alert => alert.userId);
+
+        const userData = await prisma.user.findMany({
+            where: {
+                clerkId: {
+                    in: userIds
+                }
+            }
+        });
+
+        console.log("newEvent", newEvent)
+        console.log("userData", userData)
+        console.log("alertData", alertData)
+
+        const url = "https://event-app-nextjs-14-4.vercel.app"
+
+        const subject = "New Lists in your area";
+        const payload = `${url}/events/${newEvent.id}`;
+
+        userData.forEach(async user => {
+        const email = user.email;
+            await sendEmail({ subject, email, payload });
+        });
 
         return JSON.parse(JSON.stringify(newEvent))
 

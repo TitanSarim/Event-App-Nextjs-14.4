@@ -282,3 +282,85 @@ body {
 .react-datepicker__time-list-item--selected {
   background-color: #624cf5 !important;
 }
+
+.all-alerts{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  top: 100px;
+  width: 70%;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.all-alerts-container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 12px;
+}
+
+.all-alerts-wrapper{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 99, 71, 0.459);
+  border-radius: 28px;
+  padding: 12px 20px;
+}
+
+.all-alerts-wrapper>p{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+}
+
+.all-alerts-wrapper>p>svg{
+  color: tomato;
+}
+
+.all-alerts-wrapper>span{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+  background-color: #624cf5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 100px;
+}
+
+.all-alerts-wrapper>span>svg{
+  color: rgb(255, 255, 255);
+}
+
+.all-alerts-wrapper>div{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.alert-delete-button>svg{
+  background-color: tomato;
+  padding: 8px;
+  border-radius: 100px;
+  color: white;
+  transition: all 500ms;
+  cursor: pointer;
+}
+
+
+.alert-delete-button>svg:hover{
+  transform: scale(1.04);
+}

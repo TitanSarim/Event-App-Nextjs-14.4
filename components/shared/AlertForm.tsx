@@ -6,23 +6,20 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
 import { AlertFormSchema } from '@/lib/validator';
-import { eventDefaultValues } from '@/constants';
 import { useRouter } from 'next/navigation';
 import DropDown from './DropDown';
 import SelectCity from './SelectCity';
+import { createAlert } from '@/lib/actions/alert.actions';
 
-type EventFormProps ={
+type AlertFormProps ={
     userId: string,
 }
-const AlertForm = ({userId}: EventFormProps) => {
+const AlertForm = ({userId}: AlertFormProps) => {
 
     const router = useRouter();
 
@@ -31,18 +28,19 @@ const AlertForm = ({userId}: EventFormProps) => {
     })
 
     async function onSubmit(values: z.infer<typeof AlertFormSchema>) {
-        // try {
-        //     const newEvent = await createEvent({
-        //         event:{...values, imageUrl:AlertFormSchema}, userId, path: '/profile'
-        //     })
-        //     if(newEvent){
-        //         form.reset()
-        //         router.push(`/events/${newEvent.id}`)
-        //     }
+        try {
+            const newAlert = await createAlert({
+                alert:{...values}, userId
+            })
+            if(newAlert){
+                form.reset()
+                router.push(`/alerts`)
+                window.location.reload()
+            }
 
-        // } catch (error) {
-        //     console.log(error)
-        // }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
   return (

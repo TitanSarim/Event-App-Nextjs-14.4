@@ -86,7 +86,7 @@ export type CreateUserParams = {
  // ====== Alert
   export type CreateAlertParams = {
     userId: string,
-    event: {
+    alert: {
       city: string,
       category: string,
     }
@@ -94,7 +94,7 @@ export type CreateUserParams = {
   }
 
   export type DeleteAlertParams = {
-    eventId: number
+    alertId: number
   }
 
   export type GetAlertsByUserParams = {
